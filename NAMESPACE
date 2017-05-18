@@ -1,0 +1,8 @@
+export(GeneralizedUmatrix)
+export(plotTopographicMap)
+export(XYcoords2LinesColumns)
+useDynLib("GeneralizedUmatrix", .registration = TRUE)
+
+import(Rcpp)
+  importFrom("grDevices", "contourLines")
+  importFrom("stats", "quantile", "runif", "dist","cmdscale")
