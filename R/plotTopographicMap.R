@@ -1,4 +1,4 @@
-plotTopographicMap <- function(GeneralizedUmatrix, BestMatchingUnits=NULL, Cls=NULL,Imx=NULL, Tiled=FALSE, BmSize=0.5,ShowAxis=F){
+plotTopographicMap <- function(GeneralizedUmatrix, BestMatchingUnits=NULL, Cls=NULL, ClsColors=NULL,Imx=NULL, Tiled=FALSE, BmSize=0.5,ShowAxis=F){
 # plotTopographicMap(GeneralizedUmatrix, BestMatchingUnits, Cls, Tiled)
 # Draws a plot of given GeneralizedUmatrix
 # INPUT
@@ -6,11 +6,16 @@ plotTopographicMap <- function(GeneralizedUmatrix, BestMatchingUnits=NULL, Cls=N
 # GeneralizedUmatrix(1:Lines,1:Columns)	      GeneralizedUmatrix to be plotted
 # BestMatchingUnits(1:n,1:2)		      Positions of BestMatchingUnits to be plotted onto the GeneralizedUmatrix
 # Cls(1:n)			            class identifier for the bestmatch at the given point
+# ClsColors(1:m)			Vector of colors that will be used to colorize the different classes
 # Tiled				                  should the GeneralizedUmatrix be drawn 4times?
 # HeightScale                 how high should the mountains be?
 # TextureRendering            use the 2D GeneralizedUmatrix Function to create a Texture and use this
               
 # author: MT
+  #Bei einer Insel muss die Umatrix vervierfacht werden damit funktion funktioniert
+if(!is.null(Imx))
+  Tiled=TRUE
+
   #TextureRendering=F only with Umatrix package
   if(missing(GeneralizedUmatrix)) stop('GeneralizedUmatrix is missing.')
   # OUTPUT
@@ -95,6 +100,14 @@ plotTopographicMap <- function(GeneralizedUmatrix, BestMatchingUnits=NULL, Cls=N
     ))
   }
 if(is.null(Cls)) Cls=rep(1,b[1])
+ 
+if(is.null(ClsColors)){
+ ClsColors=DefaultColorSequence()
+ }else{
+	if(length(unique(Cls))!=length(ClsColors)){
+		stop('Length of vector of Clscolor does not match the number of unique Clusters in Cls.')
+	}
+} 
 ##########################################################################################
 ## Textur generieren
 ##########################################################################################
@@ -234,8 +247,8 @@ if(is.null(Cls)) Cls=rep(1,b[1])
 ##########################################################################################
   
   if(!is.null(Imx)){#Aus showUmatrix3d, package Umatrix
-    #GeneralizedUmatrix[which(Imx == 1)] = 0
-    GeneralizedUmatrix[which(bigImx == 1)] = 0
+    GeneralizedUmatrix[which(Imx == 1)] = 0
+    #GeneralizedUmatrix[which(bigImx == 1)] = 0
 
     if(!is.null(BestMatchingUnits)){
       BestMatchingUnitsFilter = rep(T,nrow(BestMatchingUnits)) # every Bestmatch stays
@@ -322,46 +335,46 @@ if(is.null(Cls)) Cls=rep(1,b[1])
     if(is.list(BestMatchingUnitsHeights))
       BestMatchingUnitsHeights = unlist(BestMatchingUnitsHeights)
 
-    DefaultColorSeq <- c('magenta','yellow','black','red','green', 'blue','cyan',
-                         # jetzt kommen einfach alle R farben in random sequenz
-                         'burlywood4',
-                         'gray28',
-                         'darksalmon',
-                         'orchid2',
-                         'plum4',
-                         'gray41',
-                         'plum',
-                         'pink1',
-                         'coral1',
-                         'gray39',
-                         'gray',
-                         'gray67',
-                         'slategray1',
-                         'peachpuff1',
-                         'floralwhite',
-                         'hotpink',
-                         'gray12',
-                         'gray88',
-                         'orange1',
-                         'rosybrown1',
-                         'royalblue',
-                         'gray78',
-                         'mediumturquoise',
-                         'darkolivegreen',
-                         'gray45',
-                         'azure',
-                         'peachpuff3',
-                         'hotpink3',
-                         'blue1',
-                         'chocolate1',
-                         'tomato',
-                         'lightyellow',
-                         'gainsboro',
-                         'steelblue1',
-                         'gray95',
-                         'blue4',
-                         'slategrey')
-
+    # DefaultColorSeq <- c('magenta','yellow','black','red','green', 'blue','cyan',
+    #                      # jetzt kommen einfach alle R farben in random sequenz
+    #                      'burlywood4',
+    #                      'gray28',
+    #                      'darksalmon',
+    #                      'orchid2',
+    #                      'plum4',
+    #                      'gray41',
+    #                      'plum',
+    #                      'pink1',
+    #                      'coral1',
+    #                      'gray39',
+    #                      'gray',
+    #                      'gray67',
+    #                      'slategray1',
+    #                      'peachpuff1',
+    #                      'floralwhite',
+    #                      'hotpink',
+    #                      'gray12',
+    #                      'gray88',
+    #                      'orange1',
+    #                      'rosybrown1',
+    #                      'royalblue',
+    #                      'gray78',
+    #                      'mediumturquoise',
+    #                      'darkolivegreen',
+    #                      'gray45',
+    #                      'azure',
+    #                      'peachpuff3',
+    #                      'hotpink3',
+    #                      'blue1',
+    #                      'chocolate1',
+    #                      'tomato',
+    #                      'lightyellow',
+    #                      'gainsboro',
+    #                      'steelblue1',
+    #                      'gray95',
+    #                      'blue4',
+    #                      'slategrey')
+	DefaultColorSeq=ClsColors
     rgl::spheres3d(x=BestMatchingUnits[,2],BestMatchingUnits[,3], BestMatchingUnitsHeights, col = DefaultColorSeq[ColorClass], radius = BmSize)
   }
 

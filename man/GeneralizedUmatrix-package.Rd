@@ -37,9 +37,21 @@ Cls=Lsun3D$Cls
 InputDistances=as.matrix(dist(Data))
 res=cmdscale(d=InputDistances, k = 2, eig = TRUE, add = FALSE, x.ret = FALSE)
 ProjectedPoints=as.matrix(res$points)
-# Stress = KruskalStress(InputDistances, as.matrix(dist(ProjectedPoints)))
-#resUmatrix=GeneralizedUmatrix(Data,ProjectedPoints)
-#plotTopographicMap(resUmatrix$Umatrix,resUmatrix$Bestmatches,Cls)
+#see also ProjectionBasedClustering package for other common projection methods
+\donttest{
+resUmatrix=GeneralizedUmatrix(Data,ProjectedPoints)
+plotTopographicMap(resUmatrix$Umatrix,resUmatrix$Bestmatches,Cls)
+}
+##Interactive Island Generation 
+## from a tiled Umatrix (toroidal assumption)
+\dontrun{
+	Imx = interactiveGeneralizedUmatrixIsland(resUmatrix$Umatrix,
+
+	resUmatrix$Bestmatches)
+	plotTopographicMap(resUmatrix$Umatrix,
+
+	resUmatrix$Bestmatches, Imx = Imx)
+}
 }
 \keyword{GeneralizedUmatrix}
 \keyword{U-matrix}

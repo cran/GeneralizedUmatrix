@@ -10,13 +10,14 @@ visualizes high-dimensional distance and density based structurs in two-dimensio
 \usage{
 plotTopographicMap(GeneralizedUmatrix, BestMatchingUnits=NULL,
 
-Cls=NULL,Imx=NULL, Tiled=FALSE, BmSize=0.5,ShowAxis=F)
+Cls=NULL,ClsColors=NULL,Imx=NULL, Tiled=FALSE, BmSize=0.5,ShowAxis=F)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
  \item{GeneralizedUmatrix}{(1:Lines,1:Columns), Umatrix to be plotted}
 \item{BestMatchingUnits}{(1:n,1:2), Positions of bestmatches to be plotted onto the Umatrix}
   \item{Cls}{(1:n), Class identifier for the bestmatch at the given point}
+  \item{ClsColors}{Vector of colors that will be used to colorize the different classes}
  \item{Imx}{a mask (Imx) that will be used to cut out the umatrix}
  \item{Tiled}{Should the Umatrix be drawn 4times?}
 
@@ -47,14 +48,25 @@ Algorithm is partly based on the Umatrix package.
 \code{\link{GeneralizedUmatrix}}}
 
 \examples{
-#plotTopographicMap(GeneralizedUmatrix = resUmatrix$Umatrix,resUmatrix$Bestmatches)
+
+data("Lsun3D")
+Data=Lsun3D$Data
+Cls=Lsun3D$Cls
+InputDistances=as.matrix(dist(Data))
+res=cmdscale(d=InputDistances, k = 2, eig = TRUE, add = FALSE, x.ret = FALSE)
+ProjectedPoints=as.matrix(res$points)
+#see also ProjectionBasedClustering package for other common projection methods
+\donttest{
+resUmatrix=GeneralizedUmatrix(Data,ProjectedPoints)
+## visualization
+plotTopographicMap(GeneralizedUmatrix = resUmatrix$Umatrix,resUmatrix$Bestmatches)
 ## To save as STL for 3D printing
-#  rgl::writeSTL("GenerelizedUmatrix_3d_model.stl")
+ rgl::writeSTL("GenerelizedUmatrix_3d_model.stl")
 
 ## Save the visualization as a picture with
-#library(rgl)
-#rgl.snapshot('test.png')
-
+library(rgl)
+rgl.snapshot('test.png')
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

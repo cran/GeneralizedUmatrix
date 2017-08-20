@@ -2,14 +2,14 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 addRowWiseC <- function(WeightVectors, DataPoint) {
-    .Call('GeneralizedUmatrix_addRowWiseC', PACKAGE = 'GeneralizedUmatrix', WeightVectors, DataPoint)
+    .Call(`_GeneralizedUmatrix_addRowWiseC`, WeightVectors, DataPoint)
 }
 
 Delta3DWeightsC <- function(vx, Datasample) {
-    .Call('GeneralizedUmatrix_Delta3DWeightsC', PACKAGE = 'GeneralizedUmatrix', vx, Datasample)
+    .Call(`_GeneralizedUmatrix_Delta3DWeightsC`, vx, Datasample)
 }
 
 trainstepC <- function(vx, vy, DataSampled, BMUsampled, Lines, Columns, Radius, toroid) {
-    .Call('GeneralizedUmatrix_trainstepC', PACKAGE = 'GeneralizedUmatrix', vx, vy, DataSampled, BMUsampled, Lines, Columns, Radius, toroid)
+    .Call(`_GeneralizedUmatrix_trainstepC`, vx, vy, DataSampled, BMUsampled, Lines, Columns, Radius, toroid)
 }
 
