@@ -99,10 +99,26 @@ if(!is.null(Imx))
       d[2]
     ))
   }
+  ##Cls checks
 if(is.null(Cls)) Cls=rep(1,b[1])
- 
+if(!is.vector(Cls)){
+  warning('Cls is not a vector. Calling as.vector()')
+  Cls=as.vector(Cls)
+}
+  if(!is.numeric(Cls)){
+    warning('Cls is not a numeric Calling as.numeric()')
+    Cls=as.numeric(Cls)
+  }   
+  if(sum(!is.finite(Cls))>0){
+    warning('Not all values in Cls are finite. Generating nonfiniteclass with value 999')
+    Cls[!is.finite(Cls)]=999
+  }
+  if(length(Cls)!=b[1]){
+    stop(paste0('Cls has the length ',length(Cls),'which does not equal the number of the BestMatchingUnits:',b[1]))
+  }
+    
 if(is.null(ClsColors)){
- ClsColors=DefaultColorSequence()
+ ClsColors=GeneralizedUmatrix::DefaultColorSequence
  }else{
 	if(length(unique(Cls))!=length(ClsColors)){
 		stop('Length of vector of Clscolor does not match the number of unique Clusters in Cls.')

@@ -26,13 +26,12 @@ Cls=NULL,ClsColors=NULL,Imx=NULL, Tiled=FALSE, BmSize=0.5,ShowAxis=F)
 
 }
 \details{
-see chapter 5 of [Thrun, 2017] for descriptive details.
+see chapter 5 of [Thrun, 2018] for descriptive details.
 
 }
 
 \references{
-[Thrun, 2017] Thrun, M. C.:A System for Projection Based Clustering through Self-Organization and Swarm Intelligence, (Doctoral dissertation), Philipps-Universität Marburg, Marburg, 2017.
-
+[Thrun, 2018]  Thrun, M. C.: Projection Based Clustering through Self-Organization and Swarm Intelligence, doctoral dissertation 2017, Springer, Heidelberg, ISBN: 978-3-658-20539-3, \url{https://doi.org/10.1007/978-3-658-20540-9}, 2018. 
 
 [Thrun et al., 2016]  Thrun, M. C., Lerch, F., Loetsch, J., & Ultsch, A.: Visualization and 3D Printing of Multivariate Data of Biomarkers, in Skala, V. (Ed.), International Conference in Central Europe on Computer Graphics, Visualization and Computer Vision (WSCG), Vol. 24, Plzen, http://wscg.zcu.cz/wscg2016/short/A43-full.pdf, 2016.
 
@@ -66,6 +65,10 @@ plotTopographicMap(GeneralizedUmatrix = resUmatrix$Umatrix,resUmatrix$Bestmatche
 ## Save the visualization as a picture with
 library(rgl)
 rgl.snapshot('test.png')
+}
+\dontshow{
+	resUmatrix=GeneralizedUmatrix(Data[1:2,],ProjectedPoints[1:2,])
+	#plotTopographicMap(resUmatrix$Umatrix,resUmatrix$Bestmatches)#testing takes longer than 5 secs
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
