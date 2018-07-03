@@ -18,8 +18,8 @@ Details are written down in [Thrun, 2018, p. 47].
 \author{
 Michael Thrun}
 \examples{
-data("Lsun3D")
-Data=Lsun3D$Data
+data("Chainlink")
+Data=Chainlink$Data
 InputDistances=as.matrix(dist(Data))
 res=cmdscale(d=InputDistances, k = 2, eig = TRUE, add = FALSE, x.ret = FALSE)
 ProjectedPoints=as.matrix(res$points)

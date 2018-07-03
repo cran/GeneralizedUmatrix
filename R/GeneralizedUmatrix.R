@@ -16,7 +16,7 @@ GeneralizedUmatrix=function(Data,ProjectedPoints,PlotIt=FALSE,Cls=NULL,Toroid=TR
 
 # Output
 # Umatrix[Lines,Columns                     umatrix (see ReadUMX() dbt.DataIO)
-# EsomNeurons[Lines,Columns,weights]       3-dimensional numeric array (wide format), not wts (long format)
+# EsomNeurons[1:Lines,1:Columns,1:weights]       3-dimensional numeric array (wide format), not wts (long format)
 # Bmu[1:n,OutputDimension]                 GridConverted Projected Points information converted by convertProjectionProjectedPoints() to predefined Grid by Lines and Columns
 # gplotres                                Ausgabe von ggplot
 # unbesetztePositionen                    Umatrix[unbesetztePositionen] =NA

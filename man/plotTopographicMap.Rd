@@ -8,9 +8,9 @@ shows generelized Umatrix visualization
 visualizes high-dimensional distance and density based structurs in two-dimensional scatter plots using a atopographic map with hypsometric tints
 }
 \usage{
-plotTopographicMap(GeneralizedUmatrix, BestMatchingUnits=NULL,
+plotTopographicMap(GeneralizedUmatrix, BestMatchingUnits,
 
-Cls=NULL,ClsColors=NULL,Imx=NULL, Tiled=FALSE, BmSize=0.5,ShowAxis=F)
+Cls=NULL,ClsColors=NULL,Imx=NULL, Tiled=FALSE, BmSize=0.5,ShowAxis=F,\dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -23,7 +23,9 @@ Cls=NULL,ClsColors=NULL,Imx=NULL, Tiled=FALSE, BmSize=0.5,ShowAxis=F)
 
 \item{BmSize}{size(diameter) of the points in the visualizations. The points represent the BestMatchingUnits}
 \item{ShowAxis}{shall the axis be shown?}
-
+\item{\dots}{
+further parameters, use only of you know what you are doing, e.g. \code{nlevels} or \code{Colormap}.
+}
 }
 \details{
 see chapter 5 of [Thrun, 2018] for descriptive details.
@@ -48,9 +50,9 @@ Algorithm is partly based on the Umatrix package.
 
 \examples{
 
-data("Lsun3D")
-Data=Lsun3D$Data
-Cls=Lsun3D$Cls
+data("Chainlink")
+Data=Chainlink$Data
+Cls=Chainlink$Cls
 InputDistances=as.matrix(dist(Data))
 res=cmdscale(d=InputDistances, k = 2, eig = TRUE, add = FALSE, x.ret = FALSE)
 ProjectedPoints=as.matrix(res$points)

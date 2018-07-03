@@ -5,21 +5,24 @@
 GeneralizedUmatrix
 }
 \description{
- Projections from a high dimensional data space onto a two dimensional plane are used to detect structures, such as clusters, in multivariate data. The generalized Umatrix is able to visualize errors of these two-dimensioal scatter plots by using a 3D topographic map.
+\packageDescription{GeneralizedUmatrix}
 }
 \details{
+For a brief introduction to \pkg{GeneralizedUmatrix} please see the vignette \href{../doc/GeneralizedUmatrix.html}{Introduction of the Generalized Umatrix Package}.
+
 \tabular{ll}{
 Package: \tab GeneralizedUmatrix\cr
 Type: \tab Package\cr
-Version: \tab 0.9.7\cr
-Date: \tab 2018-01-23\cr
-License: \tab CC BY-NC-SA 4.0\cr
+Version: \tab 1.1.2\cr
+Date: \tab 2018-07-03\cr
+License: \tab GPL-3\cr
 }
 
 For further details regarding the generalized Umatrix see [Thrun, 2018], chapter 4-5.
 
 If you want to verifiy your clustering result externally, you can use \code{Heatmap} or \code{SilhouettePlot} of the CRAN package \code{DataVisualizations}.
 
+\packageIndices{GeneralizedUmatrix}
 }
 \author{
 Michal Thrun
@@ -32,9 +35,9 @@ Maintainer: Michael Thrun <mthrun@informatik.uni-marburg.de>
 [Ultsch/Thrun, 2017]  Ultsch, A., & Thrun, M. C.: Credible Visualizations for Planar Projections, in Cottrell, M. (Ed.), 12th International Workshop on Self-Organizing Maps and Learning Vector Quantization, Clustering and Data Visualization (WSOM), IEEE Xplore, France, 2017.
 }
 \examples{
-data("Lsun3D")
-Data=Lsun3D$Data
-Cls=Lsun3D$Cls
+data("Chainlink")
+Data=Chainlink$Data
+Cls=Chainlink$Cls
 InputDistances=as.matrix(dist(Data))
 res=cmdscale(d=InputDistances, k = 2, eig = TRUE, add = FALSE, x.ret = FALSE)
 ProjectedPoints=as.matrix(res$points)

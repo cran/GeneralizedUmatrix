@@ -35,7 +35,7 @@ Optional,  =T: Rcode, =F Cpp Code
  [1:Lines,1:Columns] (see \code{ReadUMX} in package DataIO)
 }
 \item{EsomNeurons}{
-[Lines,Columns,weights]       3-dimensional numeric array (wide format), not wts (long format)
+[1:Lines,1:Columns,1:weights]       3-dimensional numeric array (wide format), not wts (long format)
 }
 \item{Bestmatches}{
 [1:n,OutputDimension]   GridConverted Projected Points information converted by convertProjectionProjectedPoints() to predefined Grid by Lines and Columns
@@ -63,9 +63,9 @@ Introduced first in [Thrun, 2018, p.46], additionaly reviewed in [Ultsch/Thrun, 
 
 }
 \examples{
-data("Lsun3D")
-Data=Lsun3D$Data
-Cls=Lsun3D$Cls
+data("Chainlink")
+Data=Chainlink$Data
+Cls=Chainlink$Cls
 InputDistances=as.matrix(dist(Data))
 res=cmdscale(d=InputDistances, k = 2, eig = TRUE, add = FALSE, x.ret = FALSE)
 ProjectedPoints=as.matrix(res$points)

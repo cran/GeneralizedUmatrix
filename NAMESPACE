@@ -1,8 +1,12 @@
 export(GeneralizedUmatrix)
 export(plotTopographicMap)
 export(XYcoords2LinesColumns)
+export(upscaleUmatrix)
+
 #export(interactiveGeneralizedUmatrixIsland)
 
+
+#export(GeneratePmatrix)
 useDynLib("GeneralizedUmatrix", .registration = TRUE)
 
 #Only for Non CRAN usage 
@@ -12,6 +16,7 @@ importFrom("stats", "quantile")
 #Island generation now in ProjectionBasedClustering package
 #importFrom("shinyjs","hide","useShinyjs","toggle", "hidden", "enable", "disable")
 #import(shiny)
+importFrom("stats", "median")
 import(Rcpp)
   importFrom("grDevices", "contourLines")
   importFrom("stats", "quantile", "runif", "dist","cmdscale")
