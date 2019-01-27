@@ -1,4 +1,4 @@
-plotTopographicMap <- function(GeneralizedUmatrix, BestMatchingUnits, Cls=NULL, ClsColors=NULL,Imx=NULL, Tiled=FALSE, BmSize=0.5,ShowAxis=F,...){
+plotTopographicMap <- function(GeneralizedUmatrix, BestMatchingUnits, Cls=NULL, ClsColors=NULL,Imx=NULL, BmSize=0.5,...){
 # plotTopographicMap(GeneralizedUmatrix, BestMatchingUnits, Cls, Tiled)
 # Draws a plot of given GeneralizedUmatrix
 # INPUT
@@ -13,6 +13,70 @@ plotTopographicMap <- function(GeneralizedUmatrix, BestMatchingUnits, Cls=NULL, 
               
 # author: MT
   #Bei einer Insel muss die Umatrix vervierfacht werden damit funktion funktioniert
+ 
+########################################################################################## 
+  #Catch further arguments ----
+##########################################################################################
+  dots=list(...)
+  
+  #in case of pmatrix
+  if(is.null(dots[["Colormap"]]))
+    Colormap=GeneralizedUmatrix::UmatrixColormap
+  else
+    Colormap=dots$Colormap
+  
+  #axis with labels
+  if(is.null(dots[["ShowAxis"]]))
+    ShowAxis=FALSE
+  else
+    ShowAxis=dots$ShowAxis
+  
+  if(is.null(dots[["Tiled"]]))
+    Tiled=FALSE
+  else
+    Tiled=dots$Tiled
+  
+  #number of contour lines, limit to plot faster
+  if(is.null(dots[["NoLevels"]]))
+    NoLevels=35
+  else
+    NoLevels=dots$NoLevels
+  
+  if(is.null(dots[["main"]]))
+    main=NULL
+  else
+    main=dots$main
+  
+  if(!is.null(dots[["title"]]))
+    main=dots$title
+  
+  
+  if(is.null(dots[["sub"]]))
+    sub=NULL
+  else
+    sub=dots$sub
+  
+  if(!ShowAxis){
+    if(is.null(dots[["xlab"]]))
+      xlab=NULL
+    else
+      xlab=dots$xlab
+    
+    if(is.null(dots[["ylab"]]))
+      ylab=NULL
+    else
+      ylab=dots$ylab
+    
+    if(is.null(dots[["zlab"]]))
+      zlab=NULL
+    else
+      zlab=dots$zlab
+  }else{
+    xlab=ylab=zlab=NULL
+  }
+##########################################################################################  
+  #check for island ----
+##########################################################################################
 if(!is.null(Imx))
   Tiled=TRUE
 
@@ -21,7 +85,7 @@ if(!is.null(Imx))
   # OUTPUT
 	if(!requireNamespace("rgl", quietly = T)) stop("Package Rgl could not be loaded.")
 
-  ## MT: Normalization der GeneralizedUmatrix werte
+  # N#ormalization der GeneralizedUmatrix werte ----
   # Milligan, Copper 1988 A Study of Standadization of Variables in Cluster Analysis,
   # robust Normalization Z_5 :"Z_5 is bounded by 0.0 and 1.0 with at least one observed value at each of these end points"
 
@@ -35,7 +99,7 @@ if(!is.null(Imx))
   minU2=quants2[1]
   maxU2=quants2[3]
 
-  ### Hoehe aus GeneralizedUmatrix schaetzen
+  ### Hoehe aus GeneralizedUmatrix schaetzen ----
   #Verhaeltnis zwischen minhoehe/maxHoehe=1/HeightScale
       HeightScale=round(maxU2/(2*max(minU2,0.05)),0) #Factor 2 damit die GeneralizedUmatrix Hoehe nicht zu riesig wird
 
@@ -55,7 +119,7 @@ if(!is.null(Imx))
   if(length(indMin)>0)
     GeneralizedUmatrix[indMin]=0
 ##########################################################################################
-  #diverse Checks
+  #diverse Checks ----
 ##########################################################################################
   if(missing(BestMatchingUnits)){
     BestMatchingUnits=matrix(1,2,2)
@@ -130,7 +194,7 @@ if(is.null(ClsColors)){
 } 
 
 ##########################################################################################
-## 4fach Kachelung (tiling) durchfuehren
+## 4fach Kachelung (tiling) durchfuehren ----
 ##########################################################################################
   
   TileGUM=function(Umatrix, BestMatches = NULL, Cls = NULL) 
@@ -175,7 +239,7 @@ if(is.null(ClsColors)){
 
 
 ##########################################################################################
-## groessere imx bauen
+## groessere imx bauen ----
 #########
   bigImx = Imx
 
@@ -188,12 +252,7 @@ if(is.null(ClsColors)){
   lines = seq(1, nrow(GeneralizedUmatrix), len = nrow(GeneralizedUmatrix))
   columns = seq(1, ncol(GeneralizedUmatrix), len = ncol(GeneralizedUmatrix))
   
-  dots=list(...)
 
-  if(is.null(dots[["Colormap"]]))
-	  Colormap=GeneralizedUmatrix::UmatrixColormap
-  else
-    Colormap=dots$Colormap
   
   Nrlevels2 = 2*HeightScale*stretchFactor #MT Farbintervalle gleich 2*hoehenintervalle, siehe oben
   levelBreaks <- seq(0,1.000001,length.out=(Nrlevels2+1))
@@ -201,7 +260,7 @@ if(is.null(ClsColors)){
 
 
 ##########################################################################################
-## remove Heights by island
+## remove Heights by island ----
 ##########################################################################################
   
   if(!is.null(Imx)){#Aus showUmatrix3d, package Umatrix
@@ -259,7 +318,7 @@ if(is.null(ClsColors)){
 
 
 ##########################################################################################
-## GeneralizedUmatrix darstellen
+## GeneralizedUmatrix darstellen ----
 ##########################################################################################
  #Aus showUmatrix3d, package Umatrix
    rgl::open3d()
@@ -276,11 +335,15 @@ if(is.null(ClsColors)){
       rgl::surface3d(x=lines, y=columns, z=z, color=color, aspect=FALSE, lit=F)
    # else
      # rgl::surface3d(x=lines, y=columns, z=z, col="white", texture="tmpGeneralizedUmatrix.png", textype="rgb",lit=F)
-
   }
-
+  
+  if(!ShowAxis){
+    rgl::title3d(main = main,sub = sub,xlab = xlab,ylab = ylab,zlab = zlab)
+  }else{
+    rgl::title3d(main = main,sub = sub)
+  }
 ##########################################################################################
-## BestMatchingUnits darstellen
+## BestMatchingUnits darstellen ----
 ##########################################################################################
 #Aus showUmatrix3d, package Umatrix   
   if(!is.null(BestMatchingUnits)){
@@ -299,7 +362,7 @@ if(is.null(ClsColors)){
 
   # konturlinien zeichnen
  # if(!TextureRendering){
-    lines = contourLines(lines,columns,z, nlevels = 35)
+    lines = contourLines(lines,columns,z, nlevels = NoLevels)
      for (i in seq_along(lines)) {
        x <- lines[[i]]$x
        y <- lines[[i]]$y
@@ -308,4 +371,5 @@ if(is.null(ClsColors)){
      }
  # }
 
+ 
 }

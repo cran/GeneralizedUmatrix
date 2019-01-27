@@ -14,7 +14,7 @@ output:
             fig.width: 7
             fig.height: 7
 vignette: >
-  %\VignetteIndexEntry{Short Intro to the Databionic Swarm (DBS)}
+  %\VignetteIndexEntry{Introduction of the Generalized Umatrix Package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -44,6 +44,7 @@ Data=Chainlink$Data
 Cls=Chainlink$Cls
 require(DataVisualizations)
 DataVisualizations::plot3D(Data,Cls,main='Chainlink dataset')
+
 InputDistances=as.matrix(dist(Data))
 res=cmdscale(d=InputDistances, k = 2, eig = TRUE, add = FALSE, x.ret = FALSE)
 ProjectedPoints=as.matrix(res$points)
@@ -54,11 +55,11 @@ plot(ProjectedPoints,col=Cls)
 Here the Generalized Umatrix is calculated using a simplified emergent self-organizing map algorithm. Then, the visualization of Generalized Umatrix is done by a 3D landscape called topographic map with hypsometric tints. 
 The resulting visualization will be toroidal meaning that the left borders cyclically connects to the right border (and bottom to top). It means there are no "real" borders in this visualizations. Instead, the visualization is "continuous". This can be visualized using the 'Tiled=TRUE' option of 'plotTopographicMap'.
 
-Note, that the 'nlevels' option is only set to load this vignette faster and should normally not be set manually. It describes the number contour lines placed relative to the hypsometric tints. All visualizations here are small and a low dpi is set in knitr in order to load the vignette faster.
+Note, that the 'NoLevels' option is only set to load this vignette faster and should normally not be set manually. It describes the number contour lines placed relative to the hypsometric tints. All visualizations here are small and a low dpi is set in knitr in order to load the vignette faster.
 
-```{r,webGL = TRUE,results = "hide"}
+```{r,webGL = TRUE,results = "hide",message=FALSE}
 visualization=GeneralizedUmatrix(Data,ProjectedPoints)
-plotTopographicMap(visualization$Umatrix,visualization$Bestmatches,nlevels=10)
+plotTopographicMap(visualization$Umatrix,visualization$Bestmatches,NoLevels=10)
 ```
 
 ## Saving Output

@@ -6,18 +6,6 @@
 
 using namespace Rcpp;
 
-// addRowWiseC
-NumericMatrix addRowWiseC(NumericMatrix WeightVectors, NumericVector DataPoint);
-RcppExport SEXP _GeneralizedUmatrix_addRowWiseC(SEXP WeightVectorsSEXP, SEXP DataPointSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type WeightVectors(WeightVectorsSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type DataPoint(DataPointSEXP);
-    rcpp_result_gen = Rcpp::wrap(addRowWiseC(WeightVectors, DataPoint));
-    return rcpp_result_gen;
-END_RCPP
-}
 // Delta3DWeightsC
 arma::cube Delta3DWeightsC(Rcpp::NumericVector vx, Rcpp::NumericVector Datasample);
 RcppExport SEXP _GeneralizedUmatrix_Delta3DWeightsC(SEXP vxSEXP, SEXP DatasampleSEXP) {
@@ -27,6 +15,18 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type vx(vxSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type Datasample(DatasampleSEXP);
     rcpp_result_gen = Rcpp::wrap(Delta3DWeightsC(vx, Datasample));
+    return rcpp_result_gen;
+END_RCPP
+}
+// addRowWiseC
+NumericMatrix addRowWiseC(NumericMatrix WeightVectors, NumericVector DataPoint);
+RcppExport SEXP _GeneralizedUmatrix_addRowWiseC(SEXP WeightVectorsSEXP, SEXP DataPointSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type WeightVectors(WeightVectorsSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type DataPoint(DataPointSEXP);
+    rcpp_result_gen = Rcpp::wrap(addRowWiseC(WeightVectors, DataPoint));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -50,8 +50,8 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_GeneralizedUmatrix_addRowWiseC", (DL_FUNC) &_GeneralizedUmatrix_addRowWiseC, 2},
     {"_GeneralizedUmatrix_Delta3DWeightsC", (DL_FUNC) &_GeneralizedUmatrix_Delta3DWeightsC, 2},
+    {"_GeneralizedUmatrix_addRowWiseC", (DL_FUNC) &_GeneralizedUmatrix_addRowWiseC, 2},
     {"_GeneralizedUmatrix_trainstepC", (DL_FUNC) &_GeneralizedUmatrix_trainstepC, 8},
     {NULL, NULL, 0}
 };

@@ -18,12 +18,13 @@ Data=Chainlink$Data
 Cls=Chainlink$Cls
 require(DataVisualizations)
 DataVisualizations::plot3D(Data,Cls,main='Chainlink dataset')
+
 InputDistances=as.matrix(dist(Data))
 res=cmdscale(d=InputDistances, k = 2, eig = TRUE, add = FALSE, x.ret = FALSE)
 ProjectedPoints=as.matrix(res$points)
 plot(ProjectedPoints,col=Cls)
 
-## ----webGL = TRUE,results = "hide"---------------------------------------
+## ----webGL = TRUE,results = "hide",message=FALSE-------------------------
 visualization=GeneralizedUmatrix(Data,ProjectedPoints)
-plotTopographicMap(visualization$Umatrix,visualization$Bestmatches,nlevels=10)
+plotTopographicMap(visualization$Umatrix,visualization$Bestmatches,NoLevels=10)
 

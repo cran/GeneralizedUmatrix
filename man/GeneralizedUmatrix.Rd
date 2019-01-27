@@ -1,16 +1,18 @@
 \name{GeneralizedUmatrix}
 \alias{GeneralizedUmatrix}
 \alias{getUmatrix4Projection}
-\title{ Generalized U-Matrix for projection methods }
+\title{ Generalized U-Matrix for Projection Methods }
 \usage{
 GeneralizedUmatrix(Data,ProjectedPoints,
+
 PlotIt=FALSE,Cls=NULL,Toroid=TRUE,Tiled=FALSE,ComputeInR=FALSE)
 }
 \arguments{
 \item{Data}{[1:n,1:d] array of data: n cases in rows, d variables in columns}
-\item{ProjectedPoints}{[1:n,2]n by 2 matrix containing coordinates of the Projection: A matrix of the fitted configuration.}
+\item{ProjectedPoints}{[1:n,2] matrix containing coordinates of the Projection: A matrix of the fitted configuration.}
 \item{PlotIt}{
  Optional,bool, defaut=FALSE, if =TRUE: U-Marix of every current Position of Databots will be shown
+ However, the amount of details shown will be less than in \code{\link{plotTopographicMap}}.
 }
 \item{Cls}{
 Optional, For plotting, see \code{plotUmatrix} in package Umatrix
@@ -35,7 +37,7 @@ Optional,  =T: Rcode, =F Cpp Code
  [1:Lines,1:Columns] (see \code{ReadUMX} in package DataIO)
 }
 \item{EsomNeurons}{
-[1:Lines,1:Columns,1:weights]       3-dimensional numeric array (wide format), not wts (long format)
+[1:Lines,1:Columns,1:weights]  3-dimensional numeric array (wide format), not wts (long format)
 }
 \item{Bestmatches}{
 [1:n,OutputDimension]   GridConverted Projected Points information converted by convertProjectionProjectedPoints() to predefined Grid by Lines and Columns

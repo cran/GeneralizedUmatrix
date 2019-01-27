@@ -326,7 +326,7 @@ for (i in vec){
   #Umap[unbesetztePositionen]=NA
   gplotres=NULL
 if(PlotIt){
-plotTopographicMap(Umap,BMUs,Cls,Tiled =Tiled,BmSize =1) #Sondern Gebirge=Unbekannte Orte der U-Matrix
+plotTopographicMap(Umap,BMUs,Cls,Tiled =Tiled,BmSize =1,NoLevels=5) #Sondern Gebirge=Unbekannte Orte der U-Matrix
 }
 
 return(list(Umatrix=Umap,EsomNeurons=wts,Bestmatches=BMUs,Lines=Lines,Columns=Columns,

@@ -2,21 +2,13 @@
 \alias{GeneralizedUmatrix-package}
 \docType{package}
 \title{
-GeneralizedUmatrix
+\packageTitle{GeneralizedUmatrix}
 }
 \description{
 \packageDescription{GeneralizedUmatrix}
 }
 \details{
 For a brief introduction to \pkg{GeneralizedUmatrix} please see the vignette \href{../doc/GeneralizedUmatrix.html}{Introduction of the Generalized Umatrix Package}.
-
-\tabular{ll}{
-Package: \tab GeneralizedUmatrix\cr
-Type: \tab Package\cr
-Version: \tab 1.1.2\cr
-Date: \tab 2018-07-03\cr
-License: \tab GPL-3\cr
-}
 
 For further details regarding the generalized Umatrix see [Thrun, 2018], chapter 4-5.
 
@@ -72,3 +64,5 @@ plotTopographicMap(resUmatrix$Umatrix,resUmatrix$Bestmatches,Cls)
 \keyword{U-Matrix}
 \keyword{Visualization}
 \keyword{DimensionalityReduction}
+\keyword{DR}
+\keyword{Projection}
