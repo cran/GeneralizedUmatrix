@@ -1,4 +1,4 @@
-757a5d4451bd08d0ecf66e0ccedae6ef *DESCRIPTION
+f0861bab1485d0468898dff7b7d84f23 *DESCRIPTION
 14d1f0b318085419e8b86c4ddccff2db *NAMESPACE
 0879327a3b47d2a4d05150fda8883771 *R/GeneralizedUmatrix.R
 06346d4b66651635e6c93f99c79926ef *R/GeneratePmatrix.R
@@ -7,15 +7,15 @@
 54b9f8477f519446d56fc593157bd805 *R/plotTopographicMap.R
 7f71aff2448a330f8cb1645586b9c69d *R/sESOM4BMUs.R
 32d31e872167ccfa513dc343e3ad5ac9 *R/upscaleUmatrix.R
-d3db7f8bafe9d89629f47afd762d6060 *build/partial.rdb
+fe2189ff75aa032cff263a98385fff19 *build/partial.rdb
 312968b5aa8783efe2b695b1a7f40564 *build/vignette.rds
 0fb9c18352ccff4a4940e6a31264cdea *data/Chainlink.rda
 8c0bfb659862b8c66ea693384748491a *data/DefaultColorSequence.rda
 9a29e71986e66b5b54e85cd7184f92f0 *data/UmatrixColormap.rda
 bcca6e2bead42655dee8b79f7275df2d *inst/CITATION
-07a7bbe5bdfd90e2dff09d9f4bae1d09 *inst/doc/GeneralizedUmatrix.R
-b2a2289d3055f8689d20fbd3b921b8f0 *inst/doc/GeneralizedUmatrix.Rmd
-c51747fa55d441a91a8ec5a186539925 *inst/doc/GeneralizedUmatrix.html
+7d28fcbbd9577f0ba7ed201b99a5c064 *inst/doc/GeneralizedUmatrix.R
+633ac92b81ce5d764edde9285d2c634e *inst/doc/GeneralizedUmatrix.Rmd
+02728fc8869a36cd15b38e6f282ee7a0 *inst/doc/GeneralizedUmatrix.html
 99d0fb72ac40ecea575c836d999e5791 *man/Chainlink.Rd
 38b5beab7724e4d05d00f795724b9e14 *man/DefaultColorSequence.Rd
 fda8bf6adb0a9b520eb625e8be28a401 *man/Delta3DWeightsC.Rd
@@ -34,4 +34,4 @@ a1e86627020c43852446a8e2c2141b3f *src/Makevars
 ca7f9cd7dc13f195bfa96ccd317c7d9e *src/RcppExports.cpp
 c791df47c33b505d9ca18730c7531ca3 *src/addRowWiseC.cpp
 e9e38236ae0b87dbc842369a307ec525 *src/trainstepC.cpp
-b2a2289d3055f8689d20fbd3b921b8f0 *vignettes/GeneralizedUmatrix.Rmd
+633ac92b81ce5d764edde9285d2c634e *vignettes/GeneralizedUmatrix.Rmd
