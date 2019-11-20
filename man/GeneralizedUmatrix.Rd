@@ -1,7 +1,7 @@
 \name{GeneralizedUmatrix}
 \alias{GeneralizedUmatrix}
 \alias{getUmatrix4Projection}
-\title{ Generalized U-Matrix for Projection Methods }
+\title{Generalized U-Matrix for Projection Methods}
 \usage{
 GeneralizedUmatrix(Data,ProjectedPoints,
 
