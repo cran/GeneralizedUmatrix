@@ -2,9 +2,10 @@ export(GeneralizedUmatrix)
 export(plotTopographicMap)
 export(XYcoords2LinesColumns)
 export(upscaleUmatrix)
-#export(NormalizeUmatrix)
+export(NormalizeUmatrix)
 export(GeneratePmatrix)
 export(CalcUstarmatrix)
+export(TopviewTopographicMap)
 useDynLib("GeneralizedUmatrix", .registration = TRUE)
 
 #Only for Non CRAN usage 
@@ -20,4 +21,5 @@ import(Rcpp)
   importFrom("stats", "quantile", "runif", "dist","cmdscale")
   importFrom("grDevices", "dev.off", "png")
   importFrom("graphics", "lines", "par", "rasterImage")
- 
+ importFrom("grDevices", "colorRamp")
+     importFrom("stats", "qnorm", "sd")

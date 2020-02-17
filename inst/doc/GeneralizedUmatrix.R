@@ -1,50 +1,30 @@
-## ----setup, include=FALSE------------------------------------------------
+## ----setup, include=FALSE-----------------------------------------------------
 library(rgl)
+library(GeneralizedUmatrix)
 setupKnitr()
 knitr::opts_chunk$set(echo = TRUE,
+                      fig.align = "center",
                       warning = FALSE,
-                      dpi=100,
-                      fig.align='center',
-                      message = FALSE
+                      webgl = TRUE,
+                      dpi=50,
+                      fig.width = 7, 
+                      fig.height =7,
+                      fig.keep = "all"
                       )
-library(GeneralizedUmatrix)
 
-## ----testgl, webgl=TRUE, fig.width=6,fig.height = 6,fig.keep="none"------
-data(Chainlink)
+## ----results = "hide"---------------------------------------------------------
+data("Chainlink")
 Data=Chainlink$Data
 Cls=Chainlink$Cls
 require(DataVisualizations)
-DataVisualizations::Plot3D(
-  Data,
-  Cls,
-  type = 's',
-  radius = 0.1,
-  box = F,
-  aspect = T,
-  top = T
-)
-rgl::grid3d(c("x", "y", "z"))
+DataVisualizations::Plot3D(Data,Cls,main='Chainlink dataset')
 
-## ---- fig.width=1,fig.height = 1,fig.show='hide'-------------------------
-InputDistances = as.matrix(dist(Data))
-model = cmdscale(
-d = InputDistances,
-k = 2,
-eig = TRUE,
-add = FALSE,
-x.ret = FALSE
-)
-ProjectedPoints = as.matrix(model$points)
+InputDistances=as.matrix(dist(Data))
+res=cmdscale(d=InputDistances, k = 2, eig = TRUE, add = FALSE, x.ret = FALSE)
+ProjectedPoints=as.matrix(res$points)
+plot(ProjectedPoints,col=Cls)
 
-## ---- fig.width=6,fig.height = 6,fig.keep='first'------------------------
-plot(ProjectedPoints, col = Cls)
-
-## ----results=FALSE,fig.show='hide',fig.keep="none"-----------------------
-genUmatrix = GeneralizedUmatrix(Data, ProjectedPoints)
-
-## ---- fig.width=7,fig.height = 7,fig.keep='high',fig.show='asis', webgl=TRUE----
-plotTopographicMap(genUmatrix$Umatrix, 
-                   genUmatrix$Bestmatches, 
-                   NoLevels = 10
-)
+## ----webGL = TRUE,results = "hide",message=FALSE------------------------------
+visualization=GeneralizedUmatrix(Data,ProjectedPoints)
+plotTopographicMap(visualization$Umatrix,visualization$Bestmatches,NoLevels=10)
 
