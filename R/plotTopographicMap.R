@@ -116,7 +116,7 @@ if(!is.null(Imx))
   #TextureRendering=F only with Umatrix package
   if(missing(GeneralizedUmatrix)) stop('GeneralizedUmatrix is missing.')
   # OUTPUT
-	if(!requireNamespace("rgl", quietly = T)) stop("Package Rgl could not be loaded.")
+	if(!requireNamespace("rgl", quietly = T)) warning("Namespace of package rgl could not be loaded. You can try 'TopviewTopographicMap' function as an alternative for plotting.")
 
   # N#ormalization der GeneralizedUmatrix werte ----
   # Milligan, Copper 1988 A Study of Standadization of Variables in Cluster Analysis,
@@ -176,10 +176,11 @@ if(!is.null(Imx))
   if (is.null(d)) {
     stop('GeneralizedUmatrix Dimension is null. Please check Input')
   }
-  
-  requireNamespace('matrixStats')
-  mini = matrixStats::colMins(Points, na.rm = TRUE)
-  maxi = matrixStats::colMaxs(Points, na.rm = TRUE)
+  mini=apply(Points, 2, min,na.rm=TRUE)
+  maxi=apply(Points, 2, max,na.rm=TRUE)
+  #requireNamespace('matrixStats')
+  #mini = matrixStats::colMins(Points, na.rm = TRUE)
+  #maxi = matrixStats::colMaxs(Points, na.rm = TRUE)
   if (sum(mini) < 2) {
     stop('Some Bestmatches are below 1 in X or Y/Columns or Lines')
   }

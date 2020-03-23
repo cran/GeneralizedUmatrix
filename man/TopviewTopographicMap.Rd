@@ -10,7 +10,7 @@ Fast Visualization of the Generalized U-matrix in 2D which visualizes high-dimen
 \usage{
 TopviewTopographicMap(GeneralizedUmatrix, BestMatchingUnits,
 
- Cls, ClsColors = NULL, Imx = NULL, Names = NULL, BmSize = 12, ...)
+Cls, ClsColors = NULL, Imx = NULL, Names = NULL, BmSize = 6, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -29,6 +29,8 @@ TopviewTopographicMap(GeneralizedUmatrix, BestMatchingUnits,
 \item{\dots}{
 \describe{
  \item{Tiled}{Should the Umatrix be drawn 4times?}
+  \item{main}{set specific title in plot}
+ 
   \item{_}{Further Arguments relevant for interactive shiny application}
 }
 

@@ -1,5 +1,6 @@
-TopviewTopographicMap <- function(GeneralizedUmatrix,BestMatchingUnits,Cls,ClsColors=NULL,Imx=NULL,Names=NULL, BmSize=12,...) {
+TopviewTopographicMap <- function(GeneralizedUmatrix,BestMatchingUnits,Cls,ClsColors=NULL,Imx=NULL,Names=NULL, BmSize=6,...) {
   #author: Tim Schreier, Luis Winckelmann, MCT
+  udim <- dim(GeneralizedUmatrix)
   # Error Catching ----
   if (missing(BestMatchingUnits)) {
     BestMatchingUnits = matrix(1, 2, 2)
@@ -24,9 +25,11 @@ TopviewTopographicMap <- function(GeneralizedUmatrix,BestMatchingUnits,Cls,ClsCo
     stop('GeneralizedUmatrix Dimension is null. Please check Input')
   }
   
-  requireNamespace('matrixStats')
-  mini = matrixStats::colMins(BestMatchingUnits, na.rm = TRUE)
-  maxi = matrixStats::colMaxs(BestMatchingUnits, na.rm = TRUE)
+ # requireNamespace('matrixStats')
+  mini=apply(BestMatchingUnits, 2, min,na.rm=TRUE)
+  maxi=apply(BestMatchingUnits, 2, max,na.rm=TRUE)
+  #mini = matrixStats::colMins(BestMatchingUnits, na.rm = TRUE)
+ # maxi = matrixStats::colMaxs(BestMatchingUnits, na.rm = TRUE)
   if (sum(mini) < 2) {
     stop('Some Bestmatches are below 1 in X or Y/Columns or Lines')
   }
@@ -110,6 +113,11 @@ TopviewTopographicMap <- function(GeneralizedUmatrix,BestMatchingUnits,Cls,ClsCo
   
   if (!is.null(dots[["Session"]]))
     session = dots[["Session"]]
+  
+  if (is.null(dots[["main"]]))
+    main = NULL
+  else
+    main=dots[["main"]]
   
   #Helper Function ----
   addclass <- function(class,
@@ -222,7 +230,8 @@ TopviewTopographicMap <- function(GeneralizedUmatrix,BestMatchingUnits,Cls,ClsCo
     Cls = rep(1, nrow(BestMatchingUnits))
   
   #Normalizing GeneralizedUmatrix ----
-  udim <- dim(GeneralizedUmatrix)
+
+ 
   quants2 = quantile(as.vector(GeneralizedUmatrix), c(0.01, 0.5, 0.99))
   minU2 = quants2[1]
   maxU2 = quants2[3]
@@ -263,6 +272,11 @@ TopviewTopographicMap <- function(GeneralizedUmatrix,BestMatchingUnits,Cls,ClsCo
     ShinyBinding,
     ShinyDimension
   )
+  if(is.null(main))
+    plt=plotly::layout(plt,title = "Topographic Map of Generalized U-Matrix")
+  else
+    plt=plotly::layout(plt,title = main)
+  
   if (isTRUE(ShinyBinding)) {
     PlotR <- plotly::renderPlotly({
       plt

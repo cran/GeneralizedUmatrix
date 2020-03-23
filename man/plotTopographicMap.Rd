@@ -2,7 +2,7 @@
 \alias{plotTopographicMap}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Visualizes th Generalized U-matrix in 3D
+Visualizes the Generalized U-matrix in 3D
 }
 \description{
 Visualizes high-dimensional distance and density based structurs of the combination two-dimensional scatter plots (projections) with high-dimensional data as the topographic map with hypsometric tints which is a 3D landscape.
