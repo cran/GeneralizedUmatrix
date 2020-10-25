@@ -302,10 +302,10 @@ HeuristischerParameter=max(round(Columns/6,0),20)
 rnd=runif(n=d*k*m, min =min(Data), max = max(Data)) #besser als min(data) bis max(data)
 wts<- array(rnd,c(k,m,d)) #[Lines,Columns,weights]
 # BestMatches werden festgehalten
-for(i in c(1:nrow(BMUs))){
-  wts[BMUs[i,1],BMUs[i,2],] = Data[i,]
+#for(i in c(1:nrow(BMUs))){
+#  wts[BMUs[i,1],BMUs[i,2],] = Data[i,]
 
-}
+#}
 #Jeder Radius sollte min. 1 Eppoche durchlaufen werden, mehr als eine Eppoche fuehrte nicht zu mehr Emergenz
 # s. auch Experimente mit iUmatrix(), wo eine Umatrix als Video pro Eppoche bei diverser Parameterwahl gezeichnet wird
 epochs=HeuristischerParameter
