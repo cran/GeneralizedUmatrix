@@ -19,14 +19,41 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 ```{r setup, include=FALSE}
-library(rgl)
-setupKnitr()
+
 knitr::opts_chunk$set(echo = TRUE,
                       warning = FALSE,
                       dpi=100,
                       fig.align='center',
                       message = FALSE
                       )
+
+```
+
+```{r echo = FALSE}
+if (!requireNamespace("rmarkdown")) {
+  warning("This vignette requires rmarkdown; code will not run in older versions.")
+  knitr::opts_chunk$set(eval = FALSE)
+}
+```
+
+```{r echo = FALSE}
+if (!rmarkdown::pandoc_available("1.12.3")) {
+  warning("This vignette requires pandoc version 1.12.3; code will not run in older versions.")
+  knitr::opts_chunk$set(eval = FALSE)
+}
+```
+
+```{r echo = FALSE}
+if (!requireNamespace("rgl")) {
+  warning("This vignette requires the package rgl; code will not run without this package.")
+  knitr::opts_chunk$set(eval = FALSE)
+}else{
+  library(rgl)
+  setupKnitr()
+}
+```
+
+```{r echo = FALSE}
 library(GeneralizedUmatrix)
 ```
 

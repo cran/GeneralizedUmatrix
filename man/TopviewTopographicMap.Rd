@@ -43,7 +43,7 @@ Please see \code{\link{plotTopographicMap}}. This function is currently still ex
 plotly handler
 }
 \references{
-[Thrun, 2018]  Thrun, M. C.: Projection Based Clustering through Self-Organization and Swarm Intelligence, doctoral dissertation 2017, Springer, Heidelberg, ISBN: 978-3-658-20539-3, \url{https://doi.org/10.1007/978-3-658-20540-9}, 2018. 
+[Thrun, 2018]  Thrun, M. C.: Projection Based Clustering through Self-Organization and Swarm Intelligence, doctoral dissertation 2017, Springer, Heidelberg, ISBN: 978-3-658-20539-3, \doi{10.1007/978-3-658-20540-9}, 2018. 
 
 [Thrun et al., 2016]  Thrun, M. C., Lerch, F., Loetsch, J., & Ultsch, A.: Visualization and 3D Printing of Multivariate Data of Biomarkers, in Skala, V. (Ed.), International Conference in Central Europe on Computer Graphics, Visualization and Computer Vision (WSCG), Vol. 24, Plzen, http://wscg.zcu.cz/wscg2016/short/A43-full.pdf, 2016.
 
@@ -75,8 +75,10 @@ resUmatrix=GeneralizedUmatrix(Data,ProjectedPoints)
 TopviewTopographicMap(GeneralizedUmatrix = resUmatrix$Umatrix,resUmatrix$Bestmatches)
 }
 \dontshow{
+if(requireNamespace('deldir',quietly = TRUE)) {
 	resUmatrix=GeneralizedUmatrix(Data[1:2,],ProjectedPoints[1:2,])
 	TopviewTopographicMap(resUmatrix$Umatrix,resUmatrix$Bestmatches)
+}
 }
 }
 \keyword{topographic}% use one of  RShowDoc("KEYWORDS")
