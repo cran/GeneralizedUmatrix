@@ -5,7 +5,9 @@
 \usage{
 GeneralizedUmatrix(Data,ProjectedPoints,
 
-PlotIt=FALSE,Cls=NULL,Toroid=TRUE,Tiled=FALSE,ComputeInR=FALSE)
+PlotIt=FALSE,Cls=NULL,Toroid=TRUE, Tiled=FALSE,
+
+ComputeInR=FALSE,Parallel=FALSE,DataPerEpoch=1,\dots)
 }
 \arguments{
 \item{Data}{[1:n,1:d] array of data: n cases in rows, d variables in columns}
@@ -30,7 +32,13 @@ Optional,For plotting see \code{plotUmatrix} in package Umatrix
 \item{ComputeInR}{
 Optional,  =T: Rcode, =F Cpp Code
 }
-
+\item{Parallel}{
+Optional,  =TRUE: compute parallel Cpp Code, =FALSE do not compute parallel Cpp Code
+}
+\item{DataPerEpoch}{
+Optional, scalar, value above zero and below 1 starts sampling and defines percentage of data points sampled in each epoch during the learning phase. Beware: Experimental!
+}
+\item{\dots}{Further parameters.}
 }
 \value{List with
 \item{Umatrix}{
@@ -42,6 +50,13 @@ Optional,  =T: Rcode, =F Cpp Code
 \item{Bestmatches}{
 [1:n,1:2]   Positions of GridConverted Projected Points on the Umatrix to the predefined Grid by Lines and Columns, First Columns has the content of the Line No and second Column of the Column number.
 }
+
+\item{sESOMparamaters}{internals for debugging}
+
+\item{Lines}{Number of Lines}
+
+\item{Columns}{Number of Columns}
+
 \item{gplotres}{
 output of ggplot2
 }
