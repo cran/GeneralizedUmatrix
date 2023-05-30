@@ -7,7 +7,7 @@ GeneralizedUmatrix(Data,ProjectedPoints,
 
 PlotIt=FALSE,Cls=NULL,Toroid=TRUE, Tiled=FALSE,
 
-ComputeInR=FALSE,Parallel=FALSE,DataPerEpoch=1,\dots)
+ComputeInR=FALSE,Parallel=TRUE,DataPerEpoch=1,\dots)
 }
 \arguments{
 \item{Data}{[1:n,1:d] array of data: n cases in rows, d variables in columns}
@@ -69,7 +69,7 @@ Introduced first in the PhD thesis in [Thrun, 2018, p.46]. Furthermore the two p
 
 [Ultsch/Thrun, 2017]  Ultsch, A., & Thrun, M. C.: Credible Visualizations for Planar Projections, in Cottrell, M. (Ed.), 12th International Workshop on Self-Organizing Maps and Learning Vector Quantization, Clustering and Data Visualization (WSOM), IEEE Xplore, France, 2017.
 
-[Thrun/Ultsch, 2020]  Thrun, M. C., & Ultsch, A.: Uncovering High-Dimensional Structures of Projections from Dimensionality Reduction Methods, MethodsX, Vol. in press, pp. 101093. doi 10.1016/j.mex.2020.101093, 2020.
+[Thrun/Ultsch, 2020]  Thrun, M. C., & Ultsch, A.: Uncovering High-Dimensional Structures of Projections from Dimensionality Reduction Methods, MethodsX, Vol. 7, pp. 101093, DOI \doi{10.1016/j.mex.2020.101093}, 2020.
 
 }
 \examples{
