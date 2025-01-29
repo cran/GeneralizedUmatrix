@@ -48,7 +48,7 @@ DataVisualizations::Plot3D(
 )
 rgl::grid3d(c("x", "y", "z"))
 
-## ---- fig.width=1,fig.height = 1,fig.show='hide'------------------------------
+## ----fig.width=1,fig.height = 1,fig.show='hide'-------------------------------
 InputDistances = as.matrix(dist(Data))
 model = cmdscale(
 d = InputDistances,
@@ -59,13 +59,13 @@ x.ret = FALSE
 )
 ProjectedPoints = as.matrix(model$points)
 
-## ---- fig.width=6,fig.height = 6,fig.keep='first'-----------------------------
+## ----fig.width=6,fig.height = 6,fig.keep='first'------------------------------
 plot(ProjectedPoints, col = Cls)
 
 ## ----results=FALSE,fig.show='hide',fig.keep="none"----------------------------
-genUmatrix = GeneralizedUmatrix(Data, ProjectedPoints)
+genUmatrix = GeneralizedUmatrix(Data, ProjectedPoints,Parallel =FALSE)
 
-## ---- fig.width=7,fig.height = 7,fig.keep='high',fig.show='asis', webgl=TRUE----
+## ----fig.width=7,fig.height = 7,fig.keep='high',fig.show='asis', webgl=TRUE----
 plotTopographicMap(genUmatrix$Umatrix, 
                    genUmatrix$Bestmatches, 
                    NoLevels = 10
